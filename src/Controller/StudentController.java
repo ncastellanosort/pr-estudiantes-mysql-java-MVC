@@ -5,7 +5,7 @@
 package Controller;
 
 import Model.Student;
-import Model.StudentDAO;
+import Model.DAO.StudentDAOImpl;
 import View.StudentView;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -20,10 +20,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class StudentController {
 
-    private StudentDAO dao;
+    private StudentDAOImpl dao;
     private StudentView view;
 
-    public StudentController(StudentDAO dao, StudentView view) {
+    public StudentController(StudentDAOImpl dao, StudentView view) {
         this.dao = dao;
         this.view = view;
         start();

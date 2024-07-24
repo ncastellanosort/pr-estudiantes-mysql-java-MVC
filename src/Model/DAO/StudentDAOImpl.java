@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package Model.DAO;
 
+import Model.ConnectionDB;
+import Model.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,8 +18,9 @@ import java.util.List;
  *
  * @author Nicolas
  */
-public class StudentDAO {
+public class StudentDAOImpl implements StudentDAO{
 
+    @Override
     public List<Student> getStudentsDB() {
 
         List<Student> studentsList = new ArrayList();
@@ -48,6 +51,7 @@ public class StudentDAO {
 
     }
 
+    @Override
     public void addStudentDB(Student st) {
         String sql = "INSERT INTO students VALUES (?,?,?,?,?)";
 
@@ -70,6 +74,7 @@ public class StudentDAO {
 
     }
 
+    @Override
     public void deleteStudentDB(Student st) {
         String sql = "DELETE FROM students WHERE id = ?";
 
@@ -88,6 +93,7 @@ public class StudentDAO {
         }
     }
 
+    @Override
     public Student selectStudentdDB(int id_s) {
         String sql = "SELECT * FROM students WHERE id = " + String.valueOf(id_s);
 
@@ -117,6 +123,7 @@ public class StudentDAO {
         return new_stud;
     }
 
+    @Override
     public void editStudentDB(Student st, int id_s) {
         String sql = "UPDATE students SET id = ?, first_name = ?, last_name = ?, age = ?, gpa = ? WHERE id = " + String.valueOf(id_s);
 

@@ -1,7 +1,7 @@
 package App;
 
 import Controller.StudentController;
-import Model.StudentDAO;
+import Model.DAO.StudentDAOImpl;
 import View.StudentView;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -29,7 +29,7 @@ public class Main {
         }
 
         StudentView view = new StudentView();
-        StudentDAO dao = new StudentDAO();
+        StudentDAOImpl dao = new StudentDAOImpl();
         StudentController controller = new StudentController(dao, view);
     }
 }
