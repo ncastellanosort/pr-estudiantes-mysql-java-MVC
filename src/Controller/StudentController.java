@@ -87,25 +87,6 @@ public class StudentController {
 
     }
 
-//    public void fillTable() {
-//        DefaultTableModel modelo = new DefaultTableModel(new String[]{"ID", "Nombre", "Apellido", "Edad", "GPA"}, 0);
-//
-//        List<Student> students = dao.getStudentsDB();
-//
-//        for (Student student : students) {
-//            Object[] row = {
-//                student.getId(),
-//                student.getFirst_name(),
-//                student.getLast_name(),
-//                student.getAge(),
-//                student.getGpa()
-//            };
-//            modelo.addRow(row);
-//        }
-//
-//        view.tblStudents.setModel(modelo);
-//
-//    }
     public void addStudent() {
         Student st = new Student();
 
