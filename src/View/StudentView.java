@@ -4,6 +4,11 @@
  */
 package View;
 
+import Model.DAO.StudentDAOImpl;
+import Model.Student;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Nicolas
@@ -15,7 +20,7 @@ public class StudentView extends javax.swing.JFrame {
      */
     public StudentView() {
         initComponents();
-        
+
     }
 
     /**
@@ -179,10 +184,39 @@ public class StudentView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    public void cleanEntries() {
+        txtfID.setText("");
+        txtfFirst_name.setText("");
+        txtfLast_name.setText("");
+        txtfAge.setText("");
+        txtfGPA.setText("");
+    }
+
+    public void fillTable() {
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"ID", "Nombre", "Apellido", "Edad", "GPA"}, 0);
+
+        StudentDAOImpl dao = new StudentDAOImpl();
+
+        List<Student> students = dao.getStudentsDB();
+
+        for (Student student : students) {
+            Object[] row = {
+                student.getId(),
+                student.getFirst_name(),
+                student.getLast_name(),
+                student.getAge(),
+                student.getGpa()
+            };
+            modelo.addRow(row);
+        }
+
+        tblStudents.setModel(modelo);
+
+    }
+
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAddStudent;

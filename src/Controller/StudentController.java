@@ -4,15 +4,13 @@
  */
 package Controller;
 
-import Model.Student;
 import Model.DAO.StudentDAOImpl;
+import Model.Student;
 import View.StudentView;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,7 +32,7 @@ public class StudentController {
         view.setVisible(true);
         view.setResizable(false);
         view.setLocationRelativeTo(null);
-        fillTable();
+        view.fillTable();
 
         view.btnAddStudent.addActionListener(new ActionListener() {
             @Override
@@ -42,8 +40,8 @@ public class StudentController {
 
                 try {
                     addStudent();
-                    cleanEntries();
-                    fillTable();
+                    view.cleanEntries();
+                    view.fillTable();
                 } catch (HeadlessException d) {
                     JOptionPane.showMessageDialog(null, d);
                 }
@@ -56,7 +54,7 @@ public class StudentController {
             public void actionPerformed(ActionEvent e) {
                 try {
                     deleteStudent();
-                    fillTable();
+                    view.fillTable();
                 } catch (HeadlessException d) {
                     JOptionPane.showMessageDialog(null, d);
                 }
@@ -80,7 +78,7 @@ public class StudentController {
                 try {
                     editStudent();
                     JOptionPane.showMessageDialog(null, "Editado!");
-                    fillTable();
+                    view.fillTable();
                 } catch (HeadlessException d) {
                     JOptionPane.showMessageDialog(null, d);
                 }
@@ -89,34 +87,25 @@ public class StudentController {
 
     }
 
-    public void fillTable() {
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"ID", "Nombre", "Apellido", "Edad", "GPA"}, 0);
-
-        List<Student> students = dao.getStudentsDB();
-
-        for (Student student : students) {
-            Object[] row = {
-                student.getId(),
-                student.getFirst_name(),
-                student.getLast_name(),
-                student.getAge(),
-                student.getGpa()
-            };
-            modelo.addRow(row);
-        }
-
-        view.tblStudents.setModel(modelo);
-
-    }
-
-    public void cleanEntries() {
-        view.txtfID.setText("");
-        view.txtfFirst_name.setText("");
-        view.txtfLast_name.setText("");
-        view.txtfAge.setText("");
-        view.txtfGPA.setText("");
-    }
-
+//    public void fillTable() {
+//        DefaultTableModel modelo = new DefaultTableModel(new String[]{"ID", "Nombre", "Apellido", "Edad", "GPA"}, 0);
+//
+//        List<Student> students = dao.getStudentsDB();
+//
+//        for (Student student : students) {
+//            Object[] row = {
+//                student.getId(),
+//                student.getFirst_name(),
+//                student.getLast_name(),
+//                student.getAge(),
+//                student.getGpa()
+//            };
+//            modelo.addRow(row);
+//        }
+//
+//        view.tblStudents.setModel(modelo);
+//
+//    }
     public void addStudent() {
         Student st = new Student();
 
